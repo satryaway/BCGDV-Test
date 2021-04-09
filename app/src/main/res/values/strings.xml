@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BCGDV Test</string>
+    <string name="search_artist">Search artist</string>
+    <string name="image_of_song">Image of song</string>
 </resources>
