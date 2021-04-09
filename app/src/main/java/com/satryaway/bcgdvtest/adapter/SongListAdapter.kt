@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.satryaway.bcgdvtest.R
 import com.satryaway.bcgdvtest.SongModel
 import com.satryaway.bcgdvtest.util.ImageUtils
+import java.util.ArrayList
 
 class SongListAdapter : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
 
@@ -37,5 +38,10 @@ class SongListAdapter : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return songList.size
+    }
+
+    fun updateData(songList: ArrayList<SongModel>) {
+        this.songList = songList
+        notifyDataSetChanged()
     }
 }

@@ -8,5 +8,5 @@ interface ApiService {
     @GET("search")
     fun searchSong(
         @Query("term") term: String
-    ): Call<SongModel>
+    ): Call<ResultSongModel>
 }
