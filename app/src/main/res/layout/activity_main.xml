@@ -52,7 +52,7 @@
 
     </RelativeLayout>
 
-    <com.satryaway.bcgdvtest.MediaPlayerCustomView
+    <com.satryaway.bcgdvtest.feature.mediaplayer.MediaPlayerCustomView
         android:id="@+id/v_media_player"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

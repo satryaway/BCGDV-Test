@@ -1,6 +1,6 @@
 package com.satryaway.bcgdvtest.feature.mediaplayer
 
-import com.satryaway.bcgdvtest.SongModel
+import com.satryaway.bcgdvtest.feature.search.SongModel
 
 interface MediaPlayerView {
     fun playSong(songModel: SongModel)

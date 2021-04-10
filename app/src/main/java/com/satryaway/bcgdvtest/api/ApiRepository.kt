@@ -1,4 +1,4 @@
-package com.satryaway.bcgdvtest
+package com.satryaway.bcgdvtest.api
 
 import retrofit2.await
 

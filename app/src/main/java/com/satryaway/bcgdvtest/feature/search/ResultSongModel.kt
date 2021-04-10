@@ -1,4 +1,4 @@
-package com.satryaway.bcgdvtest
+package com.satryaway.bcgdvtest.feature.search
 
 data class ResultSongModel (
     val resultCount: Int,

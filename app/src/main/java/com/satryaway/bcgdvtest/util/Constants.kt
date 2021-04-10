@@ -1,4 +1,4 @@
-package com.satryaway.bcgdvtest
+package com.satryaway.bcgdvtest.util
 
 open class Constants {
     companion object {

@@ -1,4 +1,4 @@
-package com.satryaway.bcgdvtest
+package com.satryaway.bcgdvtest.feature.mediaplayer
 
 import android.annotation.TargetApi
 import android.content.Context
@@ -7,6 +7,8 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.SeekBar
+import com.satryaway.bcgdvtest.R
+import com.satryaway.bcgdvtest.feature.search.SongModel
 import kotlinx.android.synthetic.main.player_view.view.*
 
 class MediaPlayerCustomView : RelativeLayout, View.OnClickListener,

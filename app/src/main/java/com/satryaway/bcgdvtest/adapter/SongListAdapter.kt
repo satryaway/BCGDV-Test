@@ -8,7 +8,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.satryaway.bcgdvtest.R
-import com.satryaway.bcgdvtest.SongModel
+import com.satryaway.bcgdvtest.feature.search.SongModel
 import com.satryaway.bcgdvtest.feature.mediaplayer.MediaPlayerView
 import com.satryaway.bcgdvtest.util.ImageUtils
 import java.util.ArrayList
