@@ -4,12 +4,10 @@ import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.os.Build
-import android.view.View
 import androidx.annotation.RequiresApi
 import com.satryaway.bcgdvtest.feature.mediaplayer.MediaPlayerView
-import com.satryaway.bcgdvtest.feature.search.SearchView
 
-class MediaPlayerPresenter : MediaPlayer.OnPreparedListener {
+class MediaPlayerPresenter : MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
     var mediaPlayer = MediaPlayer()
 
     private var view: MediaPlayerView? = null
@@ -27,10 +25,8 @@ class MediaPlayerPresenter : MediaPlayer.OnPreparedListener {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun playAudio(context: Context, songModel: SongModel) {
         this.songModel = songModel
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.stop()
-            mediaPlayer = MediaPlayer()
-        }
+        mediaPlayer.stop()
+        mediaPlayer = MediaPlayer()
 
         mediaPlayer.apply {
             setOnPreparedListener(this@MediaPlayerPresenter)
@@ -42,6 +38,7 @@ class MediaPlayerPresenter : MediaPlayer.OnPreparedListener {
             )
             setDataSource(songModel.previewUrl)
             prepareAsync()
+            setOnCompletionListener(this@MediaPlayerPresenter)
         }
 
         view?.setMediaPlayerLoading()
@@ -67,5 +64,9 @@ class MediaPlayerPresenter : MediaPlayer.OnPreparedListener {
 
     fun destroyMediaPlayer() {
         mediaPlayer.release()
+    }
+
+    override fun onCompletion(mp: MediaPlayer?) {
+        view?.onMediaCompletion()
     }
 }

@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import kotlinx.android.synthetic.main.bottom_player_view.view.*
+import kotlinx.android.synthetic.main.player_view.view.*
 
 class MediaPlayerCustomView : RelativeLayout, View.OnClickListener {
     @JvmOverloads
@@ -40,7 +40,7 @@ class MediaPlayerCustomView : RelativeLayout, View.OnClickListener {
     private var controlIv: ImageView? = null
 
     init {
-        inflate(context, R.layout.bottom_player_view, this)
+        inflate(context, R.layout.player_view, this)
         songNameTv = findViewById(R.id.tv_selected_song_name)
         songAlbumTv = findViewById(R.id.tv_selected_album_name)
         controlIv = findViewById(R.id.iv_control)

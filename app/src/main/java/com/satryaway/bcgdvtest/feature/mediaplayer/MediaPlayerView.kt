@@ -7,4 +7,5 @@ interface MediaPlayerView {
     fun setMediaPlayerLoading()
     fun setSongAttributes(songModel: SongModel)
     fun showMediaPlayerView()
+    fun onMediaCompletion()
 }

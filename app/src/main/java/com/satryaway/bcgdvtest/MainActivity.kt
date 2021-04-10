@@ -77,6 +77,10 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
         v_media_player.controlSong()
     }
 
+    override fun onMediaCompletion() {
+        v_media_player.controlSong()
+    }
+
     override fun onClickControl() {
         mediaPlayerPresenter.controlPlayer()
         v_media_player.controlSong()
