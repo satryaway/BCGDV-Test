@@ -42,10 +42,6 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
         }
 
         v_media_player.setControlListener(this)
-        v_media_player.setOnClickListener {
-            mediaPlayerPresenter.controlPlayer()
-            v_media_player.controlSong()
-        }
     }
 
     private fun initAdapter() {
