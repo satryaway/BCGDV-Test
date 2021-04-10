@@ -59,7 +59,8 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
                             pb_search_loading.visibility = View.VISIBLE
                         }
                         val text = et_input_keyword.text.toString()
-                        searchPresenter.performSearch(text)
+                        if (text.isNotEmpty())
+                            searchPresenter.performSearch(text)
                     }
                 }, delay)
             }
