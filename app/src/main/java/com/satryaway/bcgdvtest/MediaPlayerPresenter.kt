@@ -10,6 +10,7 @@ import com.satryaway.bcgdvtest.feature.mediaplayer.MediaPlayerView
 class MediaPlayerPresenter : MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
     var mediaPlayer = MediaPlayer()
 
+    var isMediaEnded: Boolean = false
     private var view: MediaPlayerView? = null
     private lateinit var songModel: SongModel
 
@@ -50,9 +51,13 @@ class MediaPlayerPresenter : MediaPlayer.OnPreparedListener, MediaPlayer.OnCompl
             mediaPlayer.pause()
             view?.onPauseMediaPlayer(mediaPlayer.currentPosition)
         } else {
-            view?.onPlayMediaPlayer(mediaPlayer.duration, songModel)
-            mediaPlayer.seekTo(mediaPlayer.currentPosition)
+            if (isMediaEnded) {
+                mediaPlayer.seekTo(0)
+            } else {
+                mediaPlayer.seekTo(mediaPlayer.currentPosition)
+            }
             mediaPlayer.start()
+            view?.onResumeMediaPlayer()
         }
     }
 

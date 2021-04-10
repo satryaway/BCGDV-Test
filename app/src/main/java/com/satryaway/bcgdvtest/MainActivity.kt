@@ -81,21 +81,26 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
         mediaPlayerView.setAttributes(songModel)
         mediaPlayerView.visibility = View.VISIBLE
         mediaPlayerView.controlSong(true)
+        mediaPlayerPresenter.isMediaEnded = false
 
         initRunnable()
     }
 
     override fun onResumeMediaPlayer() {
         mediaPlayerView.controlSong(true)
+        mediaPlayerPresenter.isMediaEnded = false
         initRunnable()
     }
 
     override fun onPauseMediaPlayer(length: Int) {
+        mediaPlayerPresenter.isMediaEnded = false
         handler.removeCallbacks(runnable)
     }
 
     override fun onMediaCompletion() {
         mediaPlayerView.controlSong(false)
+        mediaPlayerPresenter.isMediaEnded = true
+        sb_duration.progress = 0
         handler.removeCallbacks(runnable)
     }
 

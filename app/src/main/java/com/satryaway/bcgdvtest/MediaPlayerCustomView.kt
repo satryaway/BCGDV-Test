@@ -5,10 +5,8 @@ import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.SeekBar
-import android.widget.TextView
 import kotlinx.android.synthetic.main.player_view.view.*
 
 class MediaPlayerCustomView : RelativeLayout, View.OnClickListener,
@@ -36,17 +34,12 @@ class MediaPlayerCustomView : RelativeLayout, View.OnClickListener,
     private var onControlListener: OnControlListener? = null
     private var songModel: SongModel? = null
 
-    private var songNameTv: TextView? = null
-    private var songAlbumTv: TextView? = null
-    private var controlIv: ImageView? = null
-
     init {
         inflate(context, R.layout.player_view, this)
-        songNameTv = findViewById(R.id.tv_selected_song_name)
-        songAlbumTv = findViewById(R.id.tv_selected_album_name)
-        controlIv = findViewById(R.id.iv_control)
 
-        controlIv?.setOnClickListener(this)
+        iv_control.setOnClickListener(this)
+        sb_duration.setOnSeekBarChangeListener(this)
+        rl_parent_wrapper.setOnClickListener(this)
     }
 
     fun setControlListener(onControlListener: OnControlListener) {
@@ -63,19 +56,22 @@ class MediaPlayerCustomView : RelativeLayout, View.OnClickListener,
 
     fun setAttributes(songModel: SongModel) {
         this.songModel = songModel
-        songNameTv?.text = songModel.trackName
-        songAlbumTv?.text = songModel.collectionName
+        tv_selected_song_name.text = songModel.trackName
+        tv_selected_album_name.text = songModel.collectionName
     }
 
     override fun onClick(v: View?) {
-        if (v?.id == R.id.iv_control) {
-            onControlListener?.onClickControl()
+        when (v?.id) {
+            R.id.iv_control -> {
+                onControlListener?.onClickControl()
+            }
+            R.id.rl_parent_wrapper -> {}
         }
     }
 
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
         if (fromUser) {
-            onControlListener?.onSeekControl(progress * 1000)
+            onControlListener?.onSeekControl(progress)
         }
     }
 
