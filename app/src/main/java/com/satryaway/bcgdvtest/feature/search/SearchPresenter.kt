@@ -22,7 +22,7 @@ class SearchPresenter {
 
     fun performSearch(text: String) {
         if (text.isEmpty()) {
-            // show Toast
+            view?.showErrorSearch()
         } else {
             searchSong(text)
         }
@@ -31,7 +31,11 @@ class SearchPresenter {
     private fun searchSong(text: String) {
         GlobalScope.launch {
             val songList = apiRepository.search(text)
-            view?.handleSongSearchResult(songList.results)
+            if (songList.resultCount > 0) {
+                view?.handleSongSearchResult(songList.results)
+            } else {
+                view?.showEmptyView()
+            }
         }
     }
 }

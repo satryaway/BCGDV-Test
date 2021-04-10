@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
         btn_search.setOnClickListener {
             val text = et_input_keyword.text.toString()
             CommonUtils.hideSoftKeyboard(this, it)
+            mediaPlayerView.visibility = View.INVISIBLE
             searchPresenter.performSearch(text)
         }
 
@@ -66,20 +68,44 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
 
     override fun handleSongSearchResult(songList: ArrayList<SongModel>) {
         runOnUiThread {
+            recycler_view.visibility = View.VISIBLE
+            tv_empty_view.visibility = View.INVISIBLE
+            recycler_view.scrollToPosition(0)
             listAdapter.updateData(songList)
+        }
+    }
+
+    override fun showErrorSearch() {
+        runOnUiThread {
+            Toast.makeText(
+                this,
+                getString(R.string.please_input_keyword), Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    override fun showEmptyView() {
+        runOnUiThread {
+            recycler_view.visibility = View.INVISIBLE
+            tv_empty_view.visibility = View.VISIBLE
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun playSong(songModel: SongModel) {
+        mediaPlayerView.visibility = View.VISIBLE
         mediaPlayerPresenter.playAudio(this, songModel)
     }
 
+    override fun onLoadingMedia() {
+        pb_loading.visibility = View.VISIBLE
+    }
+
     override fun onPlayMediaPlayer(duration: Int, songModel: SongModel) {
+        pb_loading.visibility = View.INVISIBLE
         sb_duration.progress = 0
         sb_duration.max = duration
         mediaPlayerView.setAttributes(songModel)
-        mediaPlayerView.visibility = View.VISIBLE
         mediaPlayerView.controlSong(true)
         mediaPlayerPresenter.isMediaEnded = false
 

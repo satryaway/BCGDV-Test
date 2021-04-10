@@ -40,6 +40,8 @@ class MediaPlayerPresenter : MediaPlayer.OnPreparedListener, MediaPlayer.OnCompl
             prepareAsync()
             setOnCompletionListener(this@MediaPlayerPresenter)
         }
+
+        view?.onLoadingMedia()
     }
 
     fun isMediaPlaying(): Boolean = mediaPlayer.isPlaying

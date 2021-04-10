@@ -13,9 +13,11 @@ import com.satryaway.bcgdvtest.feature.mediaplayer.MediaPlayerView
 import com.satryaway.bcgdvtest.util.ImageUtils
 import java.util.ArrayList
 
-class SongListAdapter(private var mediaPlayerView: MediaPlayerView) : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
+class SongListAdapter(private var mediaPlayerView: MediaPlayerView) :
+    RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
 
     var songList = arrayListOf<SongModel>()
+    var selectedPosition = -1
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val ivSongCover: ImageView = view.findViewById(R.id.iv_song_cover)
@@ -23,6 +25,7 @@ class SongListAdapter(private var mediaPlayerView: MediaPlayerView) : RecyclerVi
         val tvArtistName: TextView = view.findViewById(R.id.tv_artist_name)
         val tvAlbumName: TextView = view.findViewById(R.id.tv_album_name)
         val rlWrapper: RelativeLayout = view.findViewById(R.id.rl_wrapper)
+        val indicator: ImageView = view.findViewById(R.id.iv_playing_indicator)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,8 +40,16 @@ class SongListAdapter(private var mediaPlayerView: MediaPlayerView) : RecyclerVi
         holder.tvAlbumName.text = songList[position].collectionName
         holder.tvArtistName.text = songList[position].artistName
         ImageUtils.loadImage(songList[position].artworkUrl100, holder.ivSongCover)
+        holder.indicator.visibility = if (selectedPosition == position) {
+            View.VISIBLE
+        } else {
+            View.INVISIBLE
+        }
         holder.rlWrapper.setOnClickListener {
+            holder.indicator.visibility = View.VISIBLE
             mediaPlayerView.playSong(songList[position])
+            selectedPosition = position
+            notifyDataSetChanged()
         }
     }
 
@@ -48,6 +59,7 @@ class SongListAdapter(private var mediaPlayerView: MediaPlayerView) : RecyclerVi
 
     fun updateData(songList: ArrayList<SongModel>) {
         this.songList = songList
+        this.selectedPosition = -1
         notifyDataSetChanged()
     }
 }
