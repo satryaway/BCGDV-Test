@@ -9,12 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.satryaway.bcgdvtest.R
 import com.satryaway.bcgdvtest.SongModel
-import com.satryaway.bcgdvtest.feature.search.SearchPresenter
-import com.satryaway.bcgdvtest.feature.search.SearchView
+import com.satryaway.bcgdvtest.feature.mediaplayer.MediaPlayerView
 import com.satryaway.bcgdvtest.util.ImageUtils
 import java.util.ArrayList
 
-class SongListAdapter(private var searchView: SearchView) : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
+class SongListAdapter(private var mediaPlayerView: MediaPlayerView) : RecyclerView.Adapter<SongListAdapter.ViewHolder>() {
 
     var songList = arrayListOf<SongModel>()
 
@@ -39,7 +38,7 @@ class SongListAdapter(private var searchView: SearchView) : RecyclerView.Adapter
         holder.tvArtistName.text = songList[position].artistName
         ImageUtils.loadImage(songList[position].artworkUrl100, holder.ivSongCover)
         holder.rlWrapper.setOnClickListener {
-            searchView.playSong(songList[position].previewUrl)
+            mediaPlayerView.playSong(songList[position])
         }
     }
 

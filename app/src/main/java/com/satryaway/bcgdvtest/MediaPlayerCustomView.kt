@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
 
-class MediaPlayerView : RelativeLayout {
+class MediaPlayerCustomView : RelativeLayout {
     @JvmOverloads
     constructor(
         context: Context,

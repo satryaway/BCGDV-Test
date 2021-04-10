@@ -4,6 +4,4 @@ import com.satryaway.bcgdvtest.SongModel
 
 interface SearchView {
     fun handleSongSearchResult(songList: ArrayList<SongModel>)
-
-    fun playSong(songUrl: String)
 }

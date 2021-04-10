@@ -1,24 +1,24 @@
 package com.satryaway.bcgdvtest
 
 import android.app.Activity
-import android.media.MediaPlayer
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.satryaway.bcgdvtest.adapter.SongListAdapter
+import com.satryaway.bcgdvtest.feature.mediaplayer.MediaPlayerView
 import com.satryaway.bcgdvtest.feature.search.SearchPresenter
 import com.satryaway.bcgdvtest.feature.search.SearchView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), SearchView {
+class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView {
 
     private val searchPresenter: SearchPresenter = SearchPresenter()
 
     private val listAdapter = SongListAdapter(this)
-    private val audioManager = AudioManager()
+    private val audioManager = MediaPlayerPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,12 +56,13 @@ class MainActivity : AppCompatActivity(), SearchView {
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun playSong(songUrl: String) {
-        audioManager.playAudio(this, songUrl)
+    override fun playSong(songModel: SongModel) {
+        audioManager.playAudio(this, songModel.previewUrl)
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        searchPresenter.detachView()
         audioManager.destroyMediaPlayer()
     }
 }

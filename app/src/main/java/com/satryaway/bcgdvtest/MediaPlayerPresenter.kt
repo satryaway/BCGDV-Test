@@ -6,7 +6,7 @@ import android.media.MediaPlayer
 import android.os.Build
 import androidx.annotation.RequiresApi
 
-class AudioManager: MediaPlayer.OnPreparedListener {
+class MediaPlayerPresenter: MediaPlayer.OnPreparedListener {
     var mediaPlayer = MediaPlayer()
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -17,7 +17,7 @@ class AudioManager: MediaPlayer.OnPreparedListener {
         }
 
         mediaPlayer.apply {
-            setOnPreparedListener(this@AudioManager)
+            setOnPreparedListener(this@MediaPlayerPresenter)
             setAudioAttributes(
                 AudioAttributes.Builder()
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)

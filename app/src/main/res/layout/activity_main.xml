@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_input_keyword"
+        android:background="@color/black"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="5dp"
@@ -41,7 +42,7 @@
         android:layout_marginTop="5dp"
         tools:listitem="@layout/song_row_item" />
 
-    <com.satryaway.bcgdvtest.MediaPlayerView
+    <com.satryaway.bcgdvtest.MediaPlayerCustomView
         android:id="@+id/v_media_player"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
