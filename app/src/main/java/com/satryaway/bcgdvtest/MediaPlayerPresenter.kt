@@ -12,7 +12,6 @@ class MediaPlayerPresenter : MediaPlayer.OnPreparedListener, MediaPlayer.OnCompl
 
     private var view: MediaPlayerView? = null
     private lateinit var songModel: SongModel
-    private var length = 0
 
     fun attachView(view: MediaPlayerView) {
         this.view = view
@@ -40,26 +39,26 @@ class MediaPlayerPresenter : MediaPlayer.OnPreparedListener, MediaPlayer.OnCompl
             prepareAsync()
             setOnCompletionListener(this@MediaPlayerPresenter)
         }
-
-        view?.setMediaPlayerLoading()
     }
 
     fun isMediaPlaying(): Boolean = mediaPlayer.isPlaying
 
+    fun getProgress() = mediaPlayer.currentPosition
+
     fun controlPlayer() {
         if (mediaPlayer.isPlaying) {
             mediaPlayer.pause()
-            length = mediaPlayer.currentPosition
+            view?.onPauseMediaPlayer(mediaPlayer.currentPosition)
         } else {
-            mediaPlayer.seekTo(length)
+            view?.onPlayMediaPlayer(mediaPlayer.duration, songModel)
+            mediaPlayer.seekTo(mediaPlayer.currentPosition)
             mediaPlayer.start()
         }
     }
 
     override fun onPrepared(mp: MediaPlayer?) {
         mediaPlayer.start()
-        view?.showMediaPlayerView()
-        view?.setSongAttributes(songModel)
+        view?.onPlayMediaPlayer(mp?.duration ?: 0, songModel)
     }
 
     fun destroyMediaPlayer() {
@@ -68,5 +67,9 @@ class MediaPlayerPresenter : MediaPlayer.OnPreparedListener, MediaPlayer.OnCompl
 
     override fun onCompletion(mp: MediaPlayer?) {
         view?.onMediaCompletion()
+    }
+
+    fun setProgress(progress: Int) {
+        mediaPlayer.seekTo(progress)
     }
 }

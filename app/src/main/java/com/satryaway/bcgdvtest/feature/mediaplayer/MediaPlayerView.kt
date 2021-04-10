@@ -4,8 +4,8 @@ import com.satryaway.bcgdvtest.SongModel
 
 interface MediaPlayerView {
     fun playSong(songModel: SongModel)
-    fun setMediaPlayerLoading()
-    fun setSongAttributes(songModel: SongModel)
-    fun showMediaPlayerView()
     fun onMediaCompletion()
+    fun onPauseMediaPlayer(length: Int)
+    fun onPlayMediaPlayer(duration: Int, songModel: SongModel)
+    fun onResumeMediaPlayer()
 }

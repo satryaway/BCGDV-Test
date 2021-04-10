@@ -4,14 +4,15 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
-import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.SeekBar
 import android.widget.TextView
 import kotlinx.android.synthetic.main.player_view.view.*
 
-class MediaPlayerCustomView : RelativeLayout, View.OnClickListener {
+class MediaPlayerCustomView : RelativeLayout, View.OnClickListener,
+    SeekBar.OnSeekBarChangeListener {
     @JvmOverloads
     constructor(
         context: Context,
@@ -29,11 +30,11 @@ class MediaPlayerCustomView : RelativeLayout, View.OnClickListener {
 
     interface OnControlListener {
         fun onClickControl()
+        fun onSeekControl(progress: Int)
     }
 
     private var onControlListener: OnControlListener? = null
     private var songModel: SongModel? = null
-    private var mediaPlayerPresenter: MediaPlayerPresenter? = null
 
     private var songNameTv: TextView? = null
     private var songAlbumTv: TextView? = null
@@ -46,20 +47,17 @@ class MediaPlayerCustomView : RelativeLayout, View.OnClickListener {
         controlIv = findViewById(R.id.iv_control)
 
         controlIv?.setOnClickListener(this)
-
     }
 
     fun setControlListener(onControlListener: OnControlListener) {
         this.onControlListener = onControlListener
     }
 
-    fun controlSong() {
-        mediaPlayerPresenter?.let {
-            if (it.isMediaPlaying()) {
-                iv_control.setImageResource(R.drawable.ic_pause)
-            } else {
-                iv_control.setImageResource(R.drawable.ic_play)
-            }
+    fun controlSong(isMediaPlaying: Boolean) {
+        if (isMediaPlaying) {
+            iv_control.setImageResource(R.drawable.ic_pause)
+        } else {
+            iv_control.setImageResource(R.drawable.ic_play)
         }
     }
 
@@ -75,9 +73,13 @@ class MediaPlayerCustomView : RelativeLayout, View.OnClickListener {
         }
     }
 
-    fun setPresenter(mediaPlayerPresenter: MediaPlayerPresenter) {
-        if (this.mediaPlayerPresenter == null) {
-            this.mediaPlayerPresenter = mediaPlayerPresenter
+    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        if (fromUser) {
+            onControlListener?.onSeekControl(progress * 1000)
         }
     }
+
+    override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+    override fun onStopTrackingTouch(seekBar: SeekBar?) {}
 }
