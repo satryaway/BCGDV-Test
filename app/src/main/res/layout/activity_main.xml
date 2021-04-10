@@ -41,4 +41,10 @@
         android:layout_marginTop="5dp"
         tools:listitem="@layout/song_row_item" />
 
+    <com.satryaway.bcgdvtest.MediaPlayerView
+        android:id="@+id/v_media_player"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>

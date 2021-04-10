@@ -1,71 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rl_wrapper"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:paddingLeft="20dp"
-    android:paddingTop="20dp"
-    android:paddingRight="20dp"
-    android:paddingBottom="20dp">
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
-    <ImageView
-        android:id="@+id/iv_song_cover"
-        android:layout_width="75dp"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/image_of_song" />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_toStartOf="@id/iv_playing_indicator"
-        android:layout_toLeftOf="@id/iv_playing_indicator"
-        android:layout_toEndOf="@+id/iv_song_cover"
-        android:layout_toRightOf="@+id/iv_song_cover"
-        android:orientation="vertical">
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp">
 
-        <TextView
-            android:id="@+id/tv_song_name"
+        <ImageView
+            android:id="@+id/iv_song_cover"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/image_of_song" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:text="Song Name"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toStartOf="@id/iv_playing_indicator"
+            android:layout_toLeftOf="@id/iv_playing_indicator"
+            android:layout_toEndOf="@+id/iv_song_cover"
+            android:layout_toRightOf="@+id/iv_song_cover"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_artist_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Artist"
-            tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/tv_song_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:maxLines="1"
+                android:text="Song Name"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/tv_album_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Album"
-            tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/tv_artist_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:maxLines="1"
+                android:text="Artist"
+                tools:ignore="HardcodedText" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_album_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:maxLines="1"
+                android:text="Album"
+                tools:ignore="HardcodedText" />
 
-    <ImageView
-        android:id="@+id/iv_playing_indicator"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        tools:ignore="ContentDescription" />
+        </LinearLayout>
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/iv_playing_indicator"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            tools:ignore="ContentDescription" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
