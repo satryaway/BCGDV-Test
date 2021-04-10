@@ -44,7 +44,8 @@
     <com.satryaway.bcgdvtest.MediaPlayerView
         android:id="@+id/v_media_player"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content" />
+        android:visibility="visible" />
 
 </RelativeLayout>

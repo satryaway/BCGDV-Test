@@ -1,9 +1,11 @@
 package com.satryaway.bcgdvtest
 
+import android.app.Activity
 import android.media.MediaPlayer
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.satryaway.bcgdvtest.adapter.SongListAdapter
@@ -31,6 +33,9 @@ class MainActivity : AppCompatActivity(), SearchView {
     private fun initView() {
         btn_search.setOnClickListener {
             val text = et_input_keyword.text.toString()
+            val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE)
+                    as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(it.windowToken, 0)
             searchPresenter.performSearch(text)
         }
     }
