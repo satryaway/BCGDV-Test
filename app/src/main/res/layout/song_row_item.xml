@@ -55,6 +55,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:maxLines="1"
+                android:textSize="12sp"
                 android:text="Artist"
                 tools:ignore="HardcodedText" />
 
@@ -64,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
+                android:textSize="10sp"
                 android:maxLines="1"
                 android:text="Album"
                 tools:ignore="HardcodedText" />

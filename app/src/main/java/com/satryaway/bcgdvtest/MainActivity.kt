@@ -14,11 +14,9 @@ import com.satryaway.bcgdvtest.adapter.SongListAdapter
 import com.satryaway.bcgdvtest.feature.mediaplayer.MediaPlayerView
 import com.satryaway.bcgdvtest.feature.search.SearchPresenter
 import com.satryaway.bcgdvtest.feature.search.SearchView
-import com.satryaway.bcgdvtest.util.CommonUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.player_view.*
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlinx.android.synthetic.main.activity_main.v_media_player as mediaPlayerView
 
 class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
@@ -57,10 +55,12 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
                     override fun run() {
                         runOnUiThread {
                             pb_search_loading.visibility = View.VISIBLE
+                            val text = et_input_keyword.text.toString()
+
+                            if (text.isNotEmpty()) {
+                                searchPresenter.performSearch(text)
+                            }
                         }
-                        val text = et_input_keyword.text.toString()
-                        if (text.isNotEmpty())
-                            searchPresenter.performSearch(text)
                     }
                 }, delay)
             }
