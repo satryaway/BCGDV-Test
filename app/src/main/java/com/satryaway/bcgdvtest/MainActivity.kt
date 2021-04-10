@@ -3,6 +3,8 @@ package com.satryaway.bcgdvtest
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -15,6 +17,8 @@ import com.satryaway.bcgdvtest.feature.search.SearchView
 import com.satryaway.bcgdvtest.util.CommonUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.player_view.*
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlinx.android.synthetic.main.activity_main.v_media_player as mediaPlayerView
 
 class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
@@ -39,14 +43,28 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
     }
 
     private fun initView() {
-        btn_search.setOnClickListener {
-            val text = et_input_keyword.text.toString()
-            CommonUtils.hideSoftKeyboard(this, it)
-            mediaPlayerView.visibility = View.INVISIBLE
-            searchPresenter.performSearch(text)
-        }
-
         mediaPlayerView.setControlListener(this)
+        et_input_keyword.addTextChangedListener(object: TextWatcher {
+            var timer = Timer()
+            val delay = 500L
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                timer.cancel()
+                timer = Timer()
+                timer.schedule(object: TimerTask() {
+                    override fun run() {
+                        runOnUiThread {
+                            pb_search_loading.visibility = View.VISIBLE
+                        }
+                        val text = et_input_keyword.text.toString()
+                        searchPresenter.performSearch(text)
+                    }
+                }, delay)
+            }
+
+        })
     }
 
     private fun initAdapter() {
@@ -68,6 +86,7 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
 
     override fun handleSongSearchResult(songList: ArrayList<SongModel>) {
         runOnUiThread {
+            pb_search_loading.visibility = View.INVISIBLE
             recycler_view.visibility = View.VISIBLE
             tv_empty_view.visibility = View.INVISIBLE
             recycler_view.scrollToPosition(0)
@@ -77,6 +96,7 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
 
     override fun showErrorSearch() {
         runOnUiThread {
+            pb_search_loading.visibility = View.INVISIBLE
             Toast.makeText(
                 this,
                 getString(R.string.please_input_keyword), Toast.LENGTH_SHORT
@@ -86,6 +106,7 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
 
     override fun showEmptyView() {
         runOnUiThread {
+            pb_search_loading.visibility = View.INVISIBLE
             recycler_view.visibility = View.INVISIBLE
             tv_empty_view.visibility = View.VISIBLE
         }

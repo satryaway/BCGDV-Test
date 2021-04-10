@@ -7,11 +7,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class SearchPresenter {
-    
+
     private var view: SearchView? = null
 
     private val apiRepository = ApiRepository()
-    
+
     fun attachView(view: SearchView) {
         this.view = view
     }
@@ -21,11 +21,7 @@ class SearchPresenter {
     }
 
     fun performSearch(text: String) {
-        if (text.isEmpty()) {
-            view?.showErrorSearch()
-        } else {
-            searchSong(text)
-        }
+        searchSong(text)
     }
 
     private fun searchSong(text: String) {
