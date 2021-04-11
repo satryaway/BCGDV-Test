@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity(), SearchView, MediaPlayerView,
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun playSong(songModel: SongModel) {
         mediaPlayerView.visibility = View.VISIBLE
-        mediaPlayerPresenter.playAudio(this, songModel)
+        mediaPlayerPresenter.playAudio(songModel)
     }
 
     override fun onLoadingMedia() {

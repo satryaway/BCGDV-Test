@@ -8,7 +8,7 @@ import androidx.annotation.RequiresApi
 import com.satryaway.bcgdvtest.feature.search.SongModel
 
 class MediaPlayerPresenter : MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
-    var mediaPlayer = MediaPlayer()
+    private var mediaPlayer = MediaPlayer()
 
     var isMediaEnded: Boolean = false
     private var view: MediaPlayerView? = null
@@ -23,7 +23,7 @@ class MediaPlayerPresenter : MediaPlayer.OnPreparedListener, MediaPlayer.OnCompl
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    fun playAudio(context: Context, songModel: SongModel) {
+    fun playAudio(songModel: SongModel) {
         this.songModel = songModel
         mediaPlayer.stop()
         mediaPlayer = MediaPlayer()

@@ -3,6 +3,7 @@ package com.satryaway.bcgdvtest.feature.search
 import android.app.Activity
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import com.satryaway.bcgdvtest.api.ApiRepository
 import kotlinx.coroutines.GlobalScope
@@ -13,7 +14,7 @@ class SearchPresenter {
 
     private var view: SearchView? = null
 
-    private val apiRepository = ApiRepository()
+    val apiRepository = ApiRepository()
 
     fun attachView(view: SearchView) {
         this.view = view
@@ -24,10 +25,6 @@ class SearchPresenter {
     }
 
     fun performSearch(text: String) {
-        searchSong(text)
-    }
-
-    private fun searchSong(text: String) {
         GlobalScope.launch {
             val songList = apiRepository.search(text)
             if (songList.resultCount > 0) {
@@ -54,8 +51,6 @@ class SearchPresenter {
                     }
                 }, delay)
             }
-
         })
-
     }
 }
