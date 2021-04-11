@@ -1,14 +1,15 @@
 package com.satryaway.bcgdvtest.feature.mediaplayer
 
-import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.annotation.VisibleForTesting
 import com.satryaway.bcgdvtest.feature.search.SongModel
 
 class MediaPlayerPresenter : MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
-    private var mediaPlayer = MediaPlayer()
+    @VisibleForTesting
+    var mediaPlayer = MediaPlayer()
 
     var isMediaEnded: Boolean = false
     private var view: MediaPlayerView? = null

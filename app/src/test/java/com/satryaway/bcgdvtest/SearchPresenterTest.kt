@@ -5,7 +5,6 @@ import com.satryaway.bcgdvtest.api.ApiService
 import com.satryaway.bcgdvtest.feature.search.ResultSongModel
 import com.satryaway.bcgdvtest.feature.search.SearchPresenter
 import com.satryaway.bcgdvtest.feature.search.SearchView
-import com.satryaway.bcgdvtest.feature.search.SongModel
 import io.mockk.*
 import org.junit.After
 import org.junit.Before
