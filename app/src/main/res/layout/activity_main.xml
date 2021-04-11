@@ -12,20 +12,51 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:autofillHints="Input Nominal"
         android:hint="@string/search_artist"
         android:inputType="text" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_below="@id/et_input_keyword"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        tools:listitem="@layout/song_row_item" />
+        android:layout_below="@id/et_input_keyword">
+
+        <ProgressBar
+            android:id="@+id/pb_search_loading"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:visibility="invisible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            tools:listitem="@layout/song_row_item"
+            tools:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tv_empty_view"
+            android:layout_width="wrap_content"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/no_result_for_your_search"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <com.satryaway.bcgdvtest.feature.mediaplayer.MediaPlayerCustomView
+        android:id="@+id/v_media_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_parent_wrapper"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray">
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/ll_song_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_selected_song_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:maxLines="1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="A little piece of heaven" />
+
+        <TextView
+            android:id="@+id/tv_selected_album_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:textSize="12sp"
+            tools:text="Avenged Sevenfold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_song_wrapper"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_bw"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_bw"
+            app:tint="@color/black"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/iv_control"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:src="@drawable/ic_play"
+            app:tint="@color/black"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/iv_ff"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_ff"
+            app:tint="@color/black"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/sb_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_wrapper"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:thumbTint="@color/black"
+        tools:ignore="UnusedAttribute" />
+
+</RelativeLayout>
